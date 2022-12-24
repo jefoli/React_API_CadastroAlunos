@@ -13,7 +13,7 @@ import { useSelector } from "react-redux"; //o outro hook do react
 export default function Header(){
 
   //importamos ele para ver se o botao foi clicado ou não (ele pertence a app geral, por issopodemos usar aqui o store (useSelector) do redux)
-  const botaoClicado = useSelector(state => state.botaoClicado);
+  const botaoClicado = useSelector(state => state.example.botaoClicado);
 
     return <Nav> {/*seria Navbar do site*/}
 

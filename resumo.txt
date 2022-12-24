@@ -1,0 +1,165 @@
+OBS: NESSA SESSÃO NÃO UTILIZAREMOS CLASS E SIM REACT HOOKS
+
+205. Styled-Components
+
+styled-Components (semelhante ao CSS) com super-poderes
+
+todos componentes normalmente são criados como pastas
+(criamos uma pasta chamada pages) -> paginas da aplicação.
+
+Components -> irão componentes
+quando for utilizar cabeçalho em todas as pastas iremos colocar em Components
+
+
+criar uma página de login
+
+
+Nesse módulo só iremos utilizar react hooks (Serão funções que não tem estado)
+
+o styled componentes é realizado dentro de um arquivo JS e não CSS.
+
+
+//criamos a pasta styles para criamos um styled component global
+
+OBS: TODO COMPONENTE DO REACT COMEÇA COM LETRA MAÍUSCULA
+
+
+209. React Router DOM (roteamento) -> responsavel por fazer o roteamento da aplicação,
+vai apontar para onde usuário vai quando clicarmos em algum link
+
+
+210. Router e History
+
+vamos trocar o Browserrouter para usarmos o History
+
+para direcionarmos as paginas fora do BrowserRouter
+
+
+212. MyRoute - Rota personalizada e privada
+
+vamos fazer uma rota -> vamos consumir uma API através de token
+com isso, algumas rotas são fechadas.
+Por exp, se uma pessoa atualizar pagina, o app irá verificar se ele está logado, caso contrário será direcionado para página de login
+
+para isso vamos criar nossas proprias rotas, vamos alterar as Routes de index.js para criarmos as próprias através de componentes
+
+Para isso, vamos criar um componente e tentar utilizar a rota dentro do componente caso o usuário estiver logado. Caso contrário, podemos utilizar o history e redirect para direcionar o usuário para outra rota
+
+instalamos propTypes
+
+213. React Toastify
+
+react Toastify para quem utiliza nossa app se comunicar
+
+exp -> mensagens que podemos enviar para os usuários (mensagem de email inválido, etc )
+podemos lançar mensagens em qualquer momento
+
+para instalar ele -> reactoastify e importar ele
+
+
+ToastContainer
+
+após importar, temos que colocar autoClose={} e informar o tempo que queremos que ele feche. Tem que ser em milisegundos
+
+      <ToastContainer autoClose={3000} />
+
+      podemos colocar className nele className="toast-container"
+
+
+para usar o toast, é necessario importar : import { toast } from 'react-toastify'
+
+214. Configurando o Axios
+
+Axios -> utilizamos para fazer requisições, get, put, post, delete (CRUD) para nossa API REST
+
+
+215. Redux + React
+
+-> instalar o redux: npm i redux react-redux
+
+redux serve para configurar um estado global ->
+
+Vamos disponibilizar o sistema de login em todas as paginas
+
+vamos usar ele para saber se ele está ou não logado e o menu que irá exibir
+podemos utilizar os dados do usuário em qualquer parte da aplicação
+
+só precisamos de redux, onde tem apenas estado global, ou seja, onde vários componentes cabeçalho, navbar em que precisa ficar acessando a mesma rota, ao invés de ficar passando de estado de componente para componente -> poderiamos vir em algum lugar e criar um estado e passar por ele.
+
+redux cria um estado global onde temos acesso em toda app
+
+Professor, me corrija se eu estiver errado, mas pelo que eu entendi até agora do uso de redux foi:
+
+o redux é um recurso do react que permite a criação/uso de um state global, que pode ser acessado por todos os componentes da aplicação.
+
+o useDispatch é um hook que eu uso para poder SALVAR dados nesse state global, sendo o type a chave que meio que indica qual ação está sendo feita, e a chave payload é onde irá qualquer dado que eu queira armazenar no state, a partir daquela ação.
+
+e o useSelector é o hook que eu uso para poder ACESSAR esse state global, e poder usar os dados salvos nele para poder usá-los nos componentes da aplicação. Assim eu posso salvar dados nesse state em um componente e acessá-los de outro, permitindo assim que eu passe dados de um componente para outro, mesmo que eles não sejam pai/filho.
+
+e esse state global tá salvo dentro de store, e eu englobo os elementos que vão usar o store com o componente Provider, para dar acesso à esse state global
+
+<Provider store={store}>
+            <BrowserRouter>
+                <div id="app">
+                    <Routes/>
+                </div>
+            </BrowserRouter>
+        </Provider>
+
+
+
+o redux tem um estado inicial -> (vai ser um objeto {}) -> ele ja vai ser o estado global da aplicação
+
+-> Estado inicial: {
+      usuario_logado:false
+}
+
+para manipular o estado, temos que disparar uma ação -> essa ação vai ser ouvida por um reducer -> esse reducer vai ser responsável por alterar o estado (pega o estado e cria um novo estado com o valor atual) -> dai ele manipula o novo estado e retorna o novo estado
+
+->ação -> reducer ->NewState(novo estado) = state(estado atual) -> NewState
+
+-> vamos criar uma pasta store() tudo relacionado com redux estará dentro
+
+
+importamos um hook em Login.js
+import { useDispatch } from "react-redux";
+
+    function handleClick(e){
+      e.preventDefault();
+
+      //colocamos o dispatch para que, quando clicarmos, ele dispare uma ação (essas ações são o que vai descrever ao redux o que ele tem que fazer) -> a ação vai ser disparada, ela vai ter um tipo e esse tipo vai falar ao redux que ação foi clicada. Ele vai ser responsável por mudar o estado baseado na ação que ele foi executada ->
+
+      //a ação é um OBJETO {} que terá um type
+      //OBS: por convenção as ações são escritas com letra maíuscula
+      dispatch({
+        type: 'BOTÃO_CLICADO'
+      });
+    }
+
+
+import { useSelector } from "react-redux"; //o outro hook do react
+
+outro hook do react
+
+
+//exemplo pratico para usar redux ->
+
+carrinho de compra e-commerce (ele está presente em todas as paginas do e-commerce) em qualquer página da aplicação
+
+exp 2: players de vídeo (barra lateral de vídeo) -> ele dispara uma ação de que o video acabou e pula para o próximo video ( é um estado global para conversar com um componente)
+
+
+216. Separando Actions e Reducers
+
+vamos separar, pois temos apenas um reducer sozinho.
+
+Dai vamos criar um redux para cada trecho da aplicação
+
+dentro de store -> criamos uma pasta chamada modulos
+
+
+React Hooks são funções que podem substituir classes na maioria dos casos, Redux é uma maneira de gerenciar o estado global da sua aplicação. Não vejo uma relação direta entre eles a não ser o uso dos hooks do próprio redux.
+
+Da uma olhada aqui que tem uma explicação muito bacana sobre os hooks no React: https://pt-br.reactjs.org/docs/hooks-intro.html
+
+O que você pode estar se referindo é que a combinação de useContext e useReducer (dois hooks do react) podem substituir o Redux. Em alguns casos isso é verdadeiro, mas para coisas mais complexas ainda usamos o Redux.
