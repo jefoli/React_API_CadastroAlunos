@@ -1,0 +1,18 @@
+aqui dentro vira todas configurações do serviço
+
+Trocamos BrowserRouter para Router no app.js para que possamos utilizar o History
+
+Em qualquer lugar da aplicação podemos importar o history
+
+criamos axios na pasta pra fazer requisições para não ficarmos digitando toda hora
+
+tem que instalar ele - npm i axios
+
+react.useEffect() -> esse hook substitui varias funções que utilizamos no class component
+
+//para que ele execute uma unica vez, passamos o primeiro parametro uma função vazia () => {} e o segundo parametro um array vazio []
+
+esse é um array de dependencia para essa função ser executada -> se tivermos alguma dependencia, estado ou variavel que muda
+e queremos que a cada vez que essa variavel mudar essa função seja executada, passamos ela aqui, como não temos nada o array vazio e essa função sera executada só uma vez quando o componente for montado
+
+react.useEffect(() => {},[])
