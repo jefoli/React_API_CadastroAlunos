@@ -190,3 +190,15 @@ criamos um arquivo chamado sagas.js -> onde ficará as configurações do sagas
 para isso precisamos instalar o sagas - npm i redux-saga
 
 criamos um rootsaga -> pois todas as sagas irão ali
+
+
+218. Redux Persist ->
+
+Redux Persist -> que faz esse trabalho de guardar esses estados, usando o localstorage no nosso exemplo, para dar um refresh na nossa aplicação e não perdermos os dados que estão em tela.
+
+assim que você faz login em alguma aplicação, é gerado um token que nada mais é do que uma credencial para você poder explorar o aplicativo e suas funcionalidades, porém se o frontend não armazenar esse token, podemos ter vários problemas, um deles é, se você der refresh em alguma página você será deslogado, pois normalmente qualquer chamada que fazemos para a API, depois de logado é necessário repassar o este token para o backend.
+
+
+temos que instalar ele -> npm i redux-persist
+
+//apos configurado, ao atualizarmos a pagina ele mantem o estado em aplication no navegador!!!

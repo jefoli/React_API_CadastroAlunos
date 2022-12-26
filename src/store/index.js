@@ -1,5 +1,13 @@
 //AQUI IRÁ OS REDUX
 
+
+//estamos importando para salvar o storage:
+import { persistStore } from 'redux-persist';
+
+//temos que importar o redux-persist tbm:
+import persistedReducers from './modules/reduxPersist';
+
+
 //colocamos o legacy_creactStore, pois estava obsoleto o creactStore
 import { applyMiddleware,legacy_createStore as createStore } from "redux";
 
@@ -12,6 +20,9 @@ import rootSaga from './modules/rootSaga';
 
 
 //import reducer from "./modules/example/reducer"; -> não precisamos mais dele, pois criamos um combineReducer (que irá mesclar todos os reducers)
+
+
+
 
 //importamos da root para usar(quanto reducer quisermos)
 import rootReducer from "./modules/rootReducer";
@@ -76,9 +87,21 @@ import rootReducer from "./modules/rootReducer";
 //além disso, precisamos aplicar o middleware:
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware)); //aply é a função que capacita aplicar o middleware;
+
+//importamos o rootpersist para salvar no storage, para isso precisamos envolver o rootReducer
+
+
+
+const store = createStore(
+  //envolvemos rootReducer para salvar o storage
+  persistedReducers(rootReducer),
+  applyMiddleware(sagaMiddleware)); //aply é a função que capacita aplicar o middleware;
 
 sagaMiddleware.run(rootSaga);
+
+
+//precisamos exportar o persistStore -> fazer a função funcionar
+export const persistor = persistStore(store);
 
 
 export default store;

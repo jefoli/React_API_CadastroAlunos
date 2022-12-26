@@ -21,9 +21,9 @@ const requisicao = () =>
   setTimeout(() => {
 
     //se colocar o reject aqui, vai emitir um pop-up na tela:
-    //resolve();
-    reject();
-  }, 2000);
+    resolve();
+    //reject();
+  }, 600);
 });
 
 //OBS: O SAGA UTILIZA FUNÇÕES GERADORAS (são aquelas) que tem asterisco na frente * (funções geradoras utilizam yield)

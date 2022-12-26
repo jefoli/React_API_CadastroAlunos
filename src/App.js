@@ -17,7 +17,10 @@ import { ToastContainer } from 'react-toastify';
 
 //temos que falar no App.js qual será o estado global da aplicação ->(no caso é o store) -> para falarmos a todos componentes que ele é um store, temos que importa-lo
 import { Provider } from "react-redux";
-import store from "./store";
+import store, { persistor } from "./store"; // além de store , importamos o persistor entre chaves para configurar o persistgate
+
+import { PersistGate } from 'redux-persist/integration/react'; // esse persist, recebe o persistor + inserimos ele no app
+
 
 /* trocamos browserRouter por Router para usarmos o History
 
@@ -40,6 +43,7 @@ function App() {
 function App() {
   return (
     <Provider store={store}> {/* aqui inseriu o redux */}
+      <PersistGate persistor={persistor}>
       <Router history={history}>
         <Header />
         <Routes />
@@ -47,6 +51,7 @@ function App() {
         <ToastContainer autoClose={3000} className="toast-container"/>
         {/* após importar, temos que colocar autoClose={} e informar o tempo que queremos que ele feche. Tem que ser em milisegundos */}
       </Router>
+      </PersistGate>
     </Provider>
 
 

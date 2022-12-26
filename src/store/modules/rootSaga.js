@@ -14,3 +14,6 @@ export default function* rootSaga(){
 }
 
 //agora precisamos aplicar esse middleware em index.js (da pasta modules)
+
+
+
