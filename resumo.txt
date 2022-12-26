@@ -163,3 +163,30 @@ React Hooks são funções que podem substituir classes na maioria dos casos, Re
 Da uma olhada aqui que tem uma explicação muito bacana sobre os hooks no React: https://pt-br.reactjs.org/docs/hooks-intro.html
 
 O que você pode estar se referindo é que a combinação de useContext e useReducer (dois hooks do react) podem substituir o Redux. Em alguns casos isso é verdadeiro, mas para coisas mais complexas ainda usamos o Redux.
+
+
+217. Redux Saga
+
+é um middleware que funciona no meio da ação (para requisições do back-end)
+
+QUANDO FOR FAZER UMA REQUISIÇÃO ASINCRONA, VAMOS PRIMEIRO PEDIR AO SAGA QUE ELE VAI DECIDIR SE FOI SUCESSO OU ERRO NAQUELA REQUISIÇÃO
+
+
+ação -> reducer -> newState ou estado atual
+
+
+vamos chamar uma (request), vamos pedir para o saga vefificar e ele próprio vai chamar o reducer (ao invés dele chamar o reducer diretamente)
+
+ação (request) -> saga -> reducer -> success/fail
+
+
+
+como funciona as requisições:
+
+igual promisses -> pedimos o dado e a prommise vai retornar(resolveu ou rejeitou) ->
+
+criamos um arquivo chamado sagas.js -> onde ficará as configurações do sagas
+
+para isso precisamos instalar o sagas - npm i redux-saga
+
+criamos um rootsaga -> pois todas as sagas irão ali

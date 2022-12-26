@@ -1,8 +1,11 @@
 //AQUI IRÁ OS REDUX
 
 //colocamos o legacy_creactStore, pois estava obsoleto o creactStore
-import { legacy_createStore as createStore } from "redux";
+import { applyMiddleware,legacy_createStore as createStore } from "redux";
 
+import createSagaMiddleware from 'redux-saga';
+
+import rootSaga from './modules/rootSaga';
 
 //o createStore recebe um cara chamado -> createReducer(ele vai escutar as ações que estão sendo disparadas e executada algumas funções)
 //-> ação disparada -> reducer ->NewState(novo estado) = state(estado atual) -> NewState
@@ -59,7 +62,25 @@ import rootReducer from "./modules/rootReducer";
 //alteramos pelo debaixo, pois criamos um root para os reducers
 //const store = createStore(reducer);
 
-const store = createStore(rootReducer);
+
+//precisamos aplicar o middlwareaqui ->
+//para isso precisamos importar duas funções:
+
+//função do redux -> apllyMiddleware;
+//função do redux-saga -> createSagaMiddleware
+//depois disso precisamos joga-las dentro de uma variavel abaixo do import:
+//(além disso, precisamos importar o rootSaga)
+
+//const sagaMiddleware = createSagaMiddleware();
+
+//além disso, precisamos aplicar o middleware:
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware)); //aply é a função que capacita aplicar o middleware;
+
+sagaMiddleware.run(rootSaga);
+
+
 export default store;
 
 //temos que falar no App.js qual será o estado global da aplicação ->(no caso é o store) -> para falarmos a todos componentes que ele é um store, temos que importa-lo ->

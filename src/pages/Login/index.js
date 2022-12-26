@@ -39,7 +39,12 @@ export default function Login() {
       // });
 
       //importamos dentro de dispach a action do arquivo action.js
-      dispatch(exampleActions.clicaBotao());
+
+
+
+      //alteramos por conta do saga para fazer request:
+      //dispatch(exampleActions.clicaBotao());
+      dispatch(exampleActions.clicaBotaoRequest());
 
       // //outra ação(podemos disparar quantas quisermos)
       // dispatch({

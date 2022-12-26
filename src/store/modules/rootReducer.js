@@ -12,3 +12,5 @@ export default combineReducers({
   example: exampleReducer,
   //para usar daí é só colocar o example
 });
+
+
