@@ -1,3 +1,0 @@
-essa pasta foi criada para receber os componentes globais da aplicação
-
-pedaços de pagina que iremos utilizar em toda aplicação

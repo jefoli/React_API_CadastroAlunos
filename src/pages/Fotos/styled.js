@@ -1,3 +1,3 @@
 import styled from 'styled-components';
 
-export const Login = styled.p ``;
+export const Fotos = styled.p ``;

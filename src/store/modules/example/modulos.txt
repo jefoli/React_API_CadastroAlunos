@@ -1,3 +1,0 @@
-aqui, temos módulos para manipular dados -> sera utilizado para action e reducer
-
-

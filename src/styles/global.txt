@@ -1,6 +1,0 @@
-AQUI CRIAMOS UM STYLED Component GLOBAL PARA UTILIZARMOS NA APLICAÇÃO
-
-TEMOS QUE IMPORTAR ELA DA SEGUNTE MANEIRA
-
-
-import { createGlobalStyle } from 'styled.components';
