@@ -18,7 +18,6 @@ export default function Header(){
     e.preventDefault();
     dispatch(actions.loginFailure());
     history.push('/');
-
   }
 
   return (

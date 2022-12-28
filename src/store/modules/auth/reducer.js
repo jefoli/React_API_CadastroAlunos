@@ -1,4 +1,6 @@
-import * as types from '../types'
+import * as types from '../types';
+
+import axios from '../../../services/axios';
 
 const initialState = {
   isLoggedIn: false,
@@ -23,6 +25,7 @@ export default function (state = initialState, action) {
 
     case types.LOGIN_FAILURE: {
       //console.log('LOGIN FAILURE');
+      delete axios.defaults.headers.Authorization; // para evitar que fique com o token ativo
       const newState = {...initialState};
       return newState;
     }
