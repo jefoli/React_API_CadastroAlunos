@@ -8,9 +8,9 @@ export default reducers => {
   const persistReducers = persistReducer(
 
     {
-      key:'REACT-BASE',
+      key:'REACT-API',
       storage,
-      whitelist: ['example'],
+      whitelist: ['auth'],
 
     },
     reducers,
